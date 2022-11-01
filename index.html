@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style.scss" />
   </head>
   <body>
-    <div id="app">
+    <div id="app" >
       <small>Frontend Masters</small>
       <h1>CSS Animation Workshop</h1>
       <ul>
@@ -28,6 +28,35 @@
         <li><a href="/examples/inflight/">Inflight Example</a></li>
       </ul>
       <div class="ball"></div>
+      <button type="" class="button">Click me</button>
     </div>
+    <script>
+      const app = document.querySelector("#app");
+      const button = document.querySelector(".button");
+      
+      const machine = {
+        initial:"start",
+        states:{
+          start:{
+            on:{CLICK:"loading"}
+          },
+          loading:{
+            on:{CLICK:"success"}
+          },
+          success:{
+            on:{CLICK:"error"}
+          },
+          error:{
+            on:{CLICK:"loading"}
+          }
+        }
+      }
+
+      button.addEventListener("click", ()=>{
+        let currentState = app.dataset.state?app.dataset.state:machine.initial
+        app.dataset.state = machine.states[currentState].on.CLICK
+      //  app.dataset.state =  app.dataset.state==="loading"?"success":"loading";
+      })
+    </script>
   </body>
 </html>

@@ -6,10 +6,31 @@ body {
   background-color: #f4f4f4;
 }
 
+#app {
+  --bg:white;
+  &[data-state="loading"]{
+    --bg:yellow;
+  }
+  &[data-state="success"]{
+    --bg:green;
+  }
+  &[data-state="error"]{
+    --bg:red;
+  }
+  background-color: var(--bg);
+}
+
 a {
   color: blue;
 }
 
+.button {
+  padding: 2rem ;
+  font-size: 20px;
+  background:blue;
+  color: white;
+
+}
 h1 {
   margin: 0;
 }
@@ -28,4 +49,14 @@ ul {
   width: 5vmin;
   border-radius: 50%;
   background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  animation: slide-right 1s linear infinite;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(50vw);
+  }
 }
